@@ -25,7 +25,7 @@
         </p>
         <br>
         @yield('content')
-        <a href="{{ route('home') }}" class="button is-primary">Back to homepage</a>
+        <a href="{{ route('welcome') }}" class="button is-primary">Back to homepage</a>
     </div>
 </section>
 </body>
