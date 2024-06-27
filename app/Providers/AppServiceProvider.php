@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Http\Request;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Pagination\Paginator;
@@ -20,10 +22,15 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
+     * @param UrlGenerator $url
+     * @return void
      */
-    public function boot(): void
+    public function boot(UrlGenerator $url): void
     {
         Paginator::defaultView('common.pagination');
+      
+        if (env('APP_ENV') == 'production') {
+            $url->forceScheme('https');
 
         RateLimiter::for('login', function (Request $request) {
             $maxAttempts = (int) env('LOGIN_MAX_ATTEMPTS', 3);
@@ -32,4 +39,5 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinutes($decayMinutes, $maxAttempts)->by($request->ip());
         });
     }
+
 }

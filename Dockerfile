@@ -1,42 +1,20 @@
-FROM php:8.2-apache
+FROM richarvey/nginx-php-fpm:1.7.2
 
-# Copy existing application directory contents
-COPY . /var/www/html/
+COPY . .
 
-# Set working directory
-WORKDIR /var/www/html
+# Image config
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
-# Set directory permissions for Apache and Laravel
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Laravel config
+ENV APP_ENV production
+ENV APP_DEBUG false
+ENV LOG_CHANNEL stderr
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    zip \
-    libzip-dev \
-    unzip \
-    && docker-php-ext-install pdo pdo_mysql zip
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# Install Composer and PHP dependencies
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && composer install --no-dev --optimize-autoloader
-
-# Install Node.js and npm
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install \
-    && npm run build
-
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite headers
-
-# Copy Apache config
-COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
-
-# Copy and make entrypoint executable
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Start Apache using the entrypoint script
-ENTRYPOINT ["/entrypoint.sh"]
-CMD ["apache2-foreground"]
+CMD ["/start.sh"]
