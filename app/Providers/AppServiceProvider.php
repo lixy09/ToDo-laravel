@@ -28,10 +28,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(UrlGenerator $url): void
     {
         Paginator::defaultView('common.pagination');
-      
+
         if (env('APP_ENV') == 'production') {
             $url->forceScheme('https');
-
+        }
         RateLimiter::for('login', function (Request $request) {
             $maxAttempts = (int) env('LOGIN_MAX_ATTEMPTS', 3);
             $decayMinutes = (int) env('LOGIN_DECAY_MINUTES', 1);
