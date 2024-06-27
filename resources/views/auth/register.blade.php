@@ -11,8 +11,8 @@
             <div class="field">
                 <label class="label">Name<span class="has-text-danger">*</span></label>
                 <div class="control">
-                    <input class="input @error('name') is-danger @enderror"
-                           type="text" name="name" value="{{ old('name') }}" required autofocus>
+                    <input class="input" type="text" name="name" id="name" value="{{ old('name') }}"
+                           placeholder="e.g. Jane Doe" autocomplete="name" required autofocus>
                 </div>
                 @error('name')
                 <p class="help is-danger">{{ $message }}</p>
@@ -22,8 +22,8 @@
             <div class="field">
                 <label class="label">Email<span class="has-text-danger">*</span></label>
                 <div class="control">
-                    <input class="input @error('email') is-danger @enderror" type="email" name="email"
-                           value="{{ old('email') }}" required>
+                    <input class="input" type="text" name="email" id="email" value="{{ old('email') }}"
+                           placeholder="e.g. name@example.com" autocomplete="email" required autofocus>
                 </div>
                 @error('email')
                 <p class="help is-danger">{{ $message }}</p>
@@ -33,8 +33,8 @@
             <div class="field">
                 <label class="label">Password<span class="has-text-danger">*</span></label>
                 <div class="control">
-                    <input class="input @error('password') is-danger @enderror" type="password" name="password"
-                           required>
+                    <input class="input" type="password" name="password" id="password" placeholder="e.g. 123&Password" autocomplete="new-password" required>
+                    <p class="help is-info">The password must be at least 8 characters long, and contain at least 1 uppercase, 1 lowercase, 1 number, 1 symbol.</p>
                 </div>
                 @error('password')
                 <p class="help is-danger">{{ $message }}</p>
@@ -44,7 +44,8 @@
             <div class="field">
                 <label class="label">Confirm Password<span class="has-text-danger">*</span></label>
                 <div class="control">
-                    <input class="input" type="password" name="password_confirmation" required>
+                    <input class="input" type="password" name="password_confirmation"
+                           id="password_confirmation" autocomplete="new-password" required>
                 </div>
             </div>
 
