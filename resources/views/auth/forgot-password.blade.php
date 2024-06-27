@@ -10,16 +10,21 @@
         @csrf
 
         <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+                <input class="input" type="email" name="email" id="email"
+                       value="{{ old('email') }}" required autofocus>
+            </div>
+            @error('email')
+            <p class="help is-danger">{{ $message }}</p>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Send Email') }}
-            </x-primary-button>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-primary">Send Email</button>
+            </div>
         </div>
     </form>
 </x-guest-layout>
