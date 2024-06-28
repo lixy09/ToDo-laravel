@@ -18,10 +18,8 @@ class UserSeeder extends Seeder
     }
 
     private $data = [
-        [
             "name" => "Jane",
             "email" => "jane@qq.com",
             "password" => "password"
-        ]
-    ];
+        ];
 }

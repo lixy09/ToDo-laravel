@@ -39,17 +39,6 @@ class TaskSeeder extends Seeder
             "title" => "Blockchain Development",
             "description" => "<p>Develop decentralized applications (DApps) using blockchain technology. Learn about smart contracts, consensus algorithms, and build applications on popular blockchain platforms.</p><p><strong>Skills:</strong> Solid understanding of blockchain concepts and programming skills.</p><p><i>Duration:</i> 4 months</p>"
         ],
-        [
-            "title" => "Data Science for Finance",
-            "description" => "<p>Apply data science techniques to analyze financial data. Explore predictive modeling, risk assessment, and data-driven decision-making in the context of finance.</p><p><strong>Requirements:</strong> Basic knowledge of finance and data analysis.</p><p><i>Duration:</i> 6 months</p>"
-        ],
-        [
-            "title" => "Cloud Native Application Development",
-            "description" => "<p>Design and build cloud-native applications using microservices architecture. Explore containerization, orchestration, and cloud-native development best practices.</p><p><strong>Skills:</strong> Familiarity with cloud platforms and microservices.</p><p><i>Duration:</i> 5 months</p>"
-        ],
-        [
-            "title" => "Cybersecurity Incident Response",
-            "description" => "<p>Develop and implement a robust incident response plan for cybersecurity incidents. Learn about identifying, containing, and mitigating security breaches.</p><p><strong>Prerequisites:</strong> Knowledge of cybersecurity fundamentals.</p><p><i>Duration:</i> 4 months</p>"
-        ]
+
     ];
 }
