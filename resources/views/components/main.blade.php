@@ -19,11 +19,11 @@
             </a>
         </div>
         <div class="navbar-start">
-            @auth
+{{--            @auth--}}
                 <a href="{{ route('tasks.index') }}" class="navbar-item is-active">
                     <span class="has-text-white is-size-5">Task</span>
                 </a>
-            @endauth
+{{--            @endauth--}}
         </div>
 
         <div class="navbar-end">
