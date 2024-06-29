@@ -13,6 +13,7 @@ class TaskController extends Controller
      */
     public function index()
     {
+        Log::info('Route task.index reached');
         $tasks = Task::orderBy('due_date')->paginate(5);
         return view('tasks.index', compact('tasks'));
     }
@@ -72,6 +73,7 @@ class TaskController extends Controller
      */
     public function complete(Task $task, Request $request)
     {
+        Log::info('Route task.complete reached');
         Log::info('Session token: ' . session('_token'));
         Log::info('Request token: ' . $request->input('_token'));
 
