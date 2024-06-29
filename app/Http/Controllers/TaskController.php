@@ -11,11 +11,8 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        Log::info('Session token: ' . session('_token'));
-        Log::info('Request token: ' . $request->input('_token'));
-
         $tasks = Task::orderBy('due_date')->paginate(5);
         return view('tasks.index', compact('tasks'));
     }
@@ -73,8 +70,11 @@ class TaskController extends Controller
     /**
      * Update the status of the task.
      */
-    public function complete(Task $task)
+    public function complete(Task $task, Request $request)
     {
+        Log::info('Session token: ' . session('_token'));
+        Log::info('Request token: ' . $request->input('_token'));
+
         $task->complete();
 
         return back()->with('success', 'Task is successfully completed.');
