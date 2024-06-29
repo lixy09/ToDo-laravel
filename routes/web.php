@@ -27,5 +27,8 @@ Route::get('/test-email', function () {
     return 'Test email sent!';
 });
 
+Route::post('/test-csrf', function () {
+    return 'CSRF check bypassed';
+});
 
 require __DIR__.'/auth.php';
