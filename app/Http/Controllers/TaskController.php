@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        Log::info('Session token: ' . session('_token'));
+        Log::info('Request token: ' . $request->input('_token'));
+
         $tasks = Task::orderBy('due_date')->paginate(5);
         return view('tasks.index', compact('tasks'));
     }
